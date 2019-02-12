@@ -6,7 +6,7 @@ IDeRS: Iterative Dehazing Method for Single Remote Sensing Image
 
 Long Xu, Dong Zhao, Yihua Yan, Jie Chen, Lingyu Duan
 
-This work has been submited. If you have any interesting problems on our work, we sincerely welcome your valuable advises, and you can email us by:
+This work has been accepted by Information Sciences, 2019. If you have any interesting problems on our work, we sincerely welcome your valuable advises, and you can email us by:
 
 dzhao@nao.cas.cn | lxu@nao.cas.cn | zhaodong_biti@163.com
 
