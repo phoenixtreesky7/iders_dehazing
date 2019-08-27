@@ -33,6 +33,10 @@ for ifile = 1 : 3
 end
 
 %% Parameters Setting
+
+method.A = 0;   % A estimating method:   0 -> DCP method;   1 -> HezeLine method
+                         % If your PC has GPU, you can set method.A = 1,
+                         % else please choose method.A = 0
 denoise = 0;
 subsampling = 3;
 iteration_max = 5;
@@ -52,18 +56,46 @@ for pic = 1 : 1 : size(image_name, 1)
     %%   A
     t1 = clock;
     
-    gamma = 1;
-    [ hazeline_A ] = reshape( estimate_airlight( image_hazy .^ (gamma)), 1, 1, 3 )
-    A(pic, :) = hazeline_A;
-    
-    % display of hazeline_A
-    % hazeline_A(pic, :)_figure(:,:,1) = hazeline_A(pic, :)(1)*ones(50*50);
-    % hazeline_A(pic, :)_figure(:,:,2) = hazeline_A(pic, :)(2)*ones(50*50);
-    % hazeline_A(pic, :)_figure(:,:,3) = hazeline_A(pic, :)(3)*ones(50*50);
-    % figure,imshow([hazeline_A(pic, :)_figure])
-    % saveName = [path_IDeRS 'iders_' num2str(pic) '_A_hl'  '.png'];
-    % imwrite(hazeline_A(pic, :)_figure, saveName);
-    
+    if ~method.A
+        % --  DCP A  -- %
+        dark = dcp(image_hazy, 25);
+        numpx = floor(PixleNumber(pic) / 1000);
+        J_dark_vec = reshape(dark, PixleNumber(pic), 1);
+        I_vec = reshape(image_hazy, PixleNumber(pic), 3);
+        
+        [J_dark_vec, indices] = sort(J_dark_vec);
+        indices = indices(PixleNumber(pic) - numpx + 1 : end);
+        
+        atmSum = zeros(1, 3);
+        for ind = 1 : numpx
+            atmSum = atmSum + I_vec(indices(ind), : );
+        end
+        dcp_A = atmSum / numpx;
+        A(pic,:) = dcp_A;
+        
+        % display of dcp_A
+        % dcp_A_figure(:, :, 1) = dcp_A(1) * ones(50 * 50);
+        % dcp_A_figure(:, :, 2) = dcp_A(2) * ones(50 * 50);
+        % dcp_A_figure(:, :, 3) = dcp_A(3) * ones(50 * 50);
+        % figure,imshow([dcp_A_figure])
+        % saveName = [path_MOF 'mof_' num2str(pic) '_A_dcp'  '.png'];
+        % imwrite(dcp_A_figure, saveName);
+    else
+        % --  Haze-Line  A  -- %
+        %
+        gamma = 1;
+        image_hazy_downsample = image_hazy(1:4:end, 1:4:end, :);
+        [ hazeline_A ] = reshape( estimate_airlight( image_hazy_downsample.^gamma, gpu_ava), 1, 1, 3 );
+        A(pic, :) = hazeline_A;
+        
+        % display of hazeline_A
+        % hazeline_A(pic, :)_figure(:,:,1) = hazeline_A(pic, :)(1)*ones(50*50);
+        % hazeline_A(pic, :)_figure(:,:,2) = hazeline_A(pic, :)(2)*ones(50*50);
+        % hazeline_A(pic, :)_figure(:,:,3) = hazeline_A(pic, :)(3)*ones(50*50);
+        % figure,imshow([hazeline_A(pic, :)_figure])
+        % saveName = [path_MOF 'mof_' num2str(pic) '_A_hl'  '.png'];
+        % imwrite(hazeline_A(pic, :)_figure, saveName);
+    end
     
     %% Transmission t Estimating and Refining
     
