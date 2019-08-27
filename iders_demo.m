@@ -34,7 +34,7 @@ end
 
 %% Parameters Setting
 
-method.A = 0;   % A estimating method:   0 -> DCP method;   1 -> HezeLine method
+method.A = 1;   % A estimating method:   0 -> DCP method;   1 -> HezeLine method
                          % If your PC has GPU, you can set method.A = 1,
                          % else please choose method.A = 0
 denoise = 0;
@@ -83,7 +83,7 @@ for pic = 1 : 1 : size(image_name, 1)
     else
         % --  Haze-Line  A  -- %
         %
-        gamma = 1;
+        gamma = 1; gpu_ava = 1;
         image_hazy_downsample = image_hazy(1:4:end, 1:4:end, :);
         [ hazeline_A ] = reshape( estimate_airlight( image_hazy_downsample.^gamma, gpu_ava), 1, 1, 3 );
         A(pic, :) = hazeline_A;
