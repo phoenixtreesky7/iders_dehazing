@@ -17,13 +17,13 @@ Remote sensing images (RSIs) taken in hazy conditions, such as haze, fog, thin c
 
 # Model of the iders Dehazing
 
- ![model of TMR](https://github.com/phoenixtreesky7/iders_dehazing/tree/master/figures/model_tmr2.png)
+ ![model of TMR](https://github.com/phoenixtreesky7/iders_dehazing/raw/master/figures/model_tmr2.png)
 
- ![model of IDeRS](https://github.com/phoenixtreesky7/iders_dehazing/tree/master/figures/iteration_flow.png)
+ ![model of IDeRS](https://github.com/phoenixtreesky7/iders_dehazing/raw/master/figures/iteration_flow.png)
 
- ![hazy image](https://github.com/phoenixtreesky7/iders_dehazing/tree/master/figures/32.png)
+ ![hazy image](https://github.com/phoenixtreesky7/iders_dehazing/raw/master/figures/32.png)
 
- ![iders dehazed image](https://github.com/phoenixtreesky7/iders_dehazing/tree/master/figures/IDeRS_32_S3_I0.png)
+ ![iders dehazed image](https://github.com/phoenixtreesky7/iders_dehazing/raw/master/figures/IDeRS_32_S3_I0.png)
 
 
 # Implementation 
