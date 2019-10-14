@@ -126,7 +126,7 @@ for pic = 1 : 1 : size(image_name, 1)
     %% Exposure Enhancement
     % --  LIME  -- %
     % Guo X, Li Y, Ling H. LIME: Low-light image enhancement via illumination map estimation[J]. IEEE Transactions on Image Processing, 2017, 26(2): 982-993.
-    dehazingiders_E = im2double(image_exposure(dehazingiders, denoise));
+    dehazingiders_E = im2double(imexposure_lime(dehazingiders, denoise));
     
     % running time
     t2=clock;
