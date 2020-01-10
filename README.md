@@ -32,3 +32,4 @@ Add all file paths into MATLAB.
 
 Then, run the code iders_demo.m
 
+[NOTE] If your PC does not have GPU, you should using DCP method to estimate atmospheric light, i.e. set method.A = 0.
