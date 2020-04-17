@@ -2,7 +2,7 @@
 
 This is a Matlab re-implementation of the paper.
 
-IDeRS: Iterative Dehazing Method for Single Remote Sensing Image
+**IDeRS: Iterative Dehazing Method for Single Remote Sensing Image**
 
 Long Xu, Dong Zhao, Yihua Yan, Sam Kwong, Jie Chen, Lingyu Duan
 
@@ -33,3 +33,23 @@ Add all file paths into MATLAB.
 Then, run the code iders_demo.m
 
 [NOTE] If your PC does not have GPU, you should using DCP method to estimate atmospheric light, i.e. set method.A = 0.
+
+# BibTex
+
+@article{xu2019iders,
+
+  title={IDeRs: Iterative dehazing method for single remote sensing image},
+  
+  author={Xu, Long and Zhao, Dong and Yan, Yihua and Kwong, Sam and Chen, Jie and Duan, Ling-Yu},
+  
+  journal={Information Sciences},
+  
+  volume={489},
+  
+  pages={50--62},
+  
+  year={2019},
+  
+  publisher={Elsevier}
+  
+}
